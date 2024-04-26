@@ -1,22 +1,30 @@
 {
     "html": [
         "README.md",
+        "cube.html",
+        "dirtwall.txt",
+        "dirtwizard.html",
         "film.html",
         "fork.html",
         "geometron.js",
         "index.html",
         "qrcode-page.html",
         "qrcode.html",
+        "radio.html",
         "readme.html",
         "readmeeditor.html",
         "replicator.sh",
         "switches.html",
         "trashmagic.css",
         "trashmagic.js",
+        "upcycle-available.txt",
+        "upcycle-wanted.txt",
+        "upcycle.html",
         "wall.html",
         "wall.txt",
         "webdestroyer.html",
-        "webeditor.html"
+        "webeditor.html",
+        "www.html"
     ],
     "data": [
         "dna.txt"
