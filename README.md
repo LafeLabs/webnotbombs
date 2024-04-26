@@ -7,6 +7,7 @@
  - [quantumart.org](https://quantumart.org)
  - [southplatte.net](https://southplatte.net)
  - [ffbus.org](https://ffbus.org)
+ - [localhost](http://localhost/)
 
 ![](images/qrcode.png)
 ![](images/qrcode-page.png)
