@@ -1,5 +1,13 @@
 # [WEB NOT BOMBS](https://github.com/LafeLabs/network)
 
+ - [colfax.site](https://colfax.site)
+ - [sloanslake.art](https://sloanslake.art)
+ - [trashrobot.org](https://trashrobot.org)
+ - [quantumnoise.org](https://quantumnoise.org)
+ - [quantumart.org](https://quantumart.org)
+ - [southplatte.net](https://southplatte.net)
+ - [ffbus.org](https://ffbus.org)
+
 ![](images/qrcode.png)
 ![](images/qrcode-page.png)
 
