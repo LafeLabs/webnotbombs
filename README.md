@@ -1,32 +1,28 @@
-# [The Network](https://github.com/LafeLabs/network)
+# [WEB NOT BOMBS](https://github.com/LafeLabs/network)
 
 ![](images/qrcode.png)
 ![](images/qrcode-page.png)
 
-*everything replicates!*
 
- - [index.html](index.html)
- - [MUSIC/](music/)
- - [STONE SOUP/](stonesoup/)
- - [BRACKETS/](brackets/)
- - [TERMINAL/](terminal/)
- - [PODCASTS/](podcasts/)
- - [BOOKS/](books/)
- - [ZINES/](zines/)
- - [Fashion/](fashion/)
- - [Freestore/](freestore/)
- - [Laws of the Network/](laws/)
- - [DIRT PIPE/](dirtpipe/)
- - [INTERNET OF SQUARES/](squares/)
- - [write on the wall](wall.html)
- - [page/](page/)
- - [QR Code](qrcode.html)
- - [STREET NETWORK/](street/)
- - [WATERSHED NETWORK](watershed/)
- - [WHAT CAN I DO FOR THE NETWORK?/](network-actions/)
- - [WHAT CAN THE NETWORK DO FOR ME?](network-benefits/)
- - [fork.html](fork.html)
+```
+sudo apt update
+sudo apt install apache2 -y
+sudo apt install php libapache2-mod-php -y
+cd /var/www/html
+sudo rm index.html
+sudo apt install curl
+sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/php/replicator.txt
+cd ..
+sudo chmod -R 0777 *
+cd html
+php replicator.php
+sudo chmod -R 0777 *
+ln -s /var/www/html/ /home/pi/Desktop
+sudo apt install snapd
+sudo snap install core
+sudo snap install audacity
 
+```
 
 1. Get a 8 foot 1x4.
 2. Cut off two sections each 24 inches long
