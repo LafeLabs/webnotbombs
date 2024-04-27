@@ -24,7 +24,8 @@
         "wall.txt",
         "webdestroyer.html",
         "webeditor.html",
-        "www.html"
+        "www.html",
+        "zines.html"
     ],
     "data": [
         "dna.txt"
