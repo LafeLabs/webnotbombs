@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+       
+    -->
+        <title>tunneling animation</title>
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAZ4efAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREAAAAAAAAREQEREREREBERAREREREQEREBEAAAARAREQEQEREBEBERARAQAQEQEREBEBABARAREQEQEREBEBERARAAAAEQEREBERERERAREQEREREREBERAAAAAAAAEREREREREREREREREREREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
+
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+
+</head>
+<body>
+<div id = "scroll">
+
+<p>
+    <a href = "index.html">HOME</a>
+</p>
+
+<p>
+    Slow down time by 1 quadrillion times.  This is 1,000,000,000,000,000. At this rate what would normally take a femtosecond takes a second.  We attempt to animate the behavior of electrons tunneling from a insulating barrier between two metal electrodes.  The current at 1 mA is about 6 electrons per femtosecond, so that's about 6 electrons per second in our slowed down time.  Roughly half the time instead of an electron popping out of the barrier on the positive voltage side a hole pops out on the negative side.  The speed of these electrons is the Fermi velocity which is about 2 nm/fs in aluminum which is our favorite metal.  
+</p>
+
+
+
+<P>
+    $$
+    v_{fermi}(Al) = 2\times 10^{8} \textrm{cm/s}
+    $$
+    $$
+    2\times 10^{8} \textrm{cm/s}\left(\frac{10^{7} \textrm{nm}}{1 \textrm{cm}}\right)\left(\frac{1 \textrm{s}}{10^{15} \textrm{fs}}\right)
+    $$
+    $$
+     = 2 \textrm{ nm/fs} = 2 \textrm{ pm/as} = 2 \mu \textrm{m/ps};
+    $$
+</P>
+
+<P>
+    $$
+    I = 1 \textrm{mA} = 
+    $$
+    $$
+    10^{-3} C/s\left(\frac{1 \textrm{e}^-}{1.602\times 10^{-19}\textrm{C}}\right)\left(\frac{1 s}{10^{15} fs}\right)
+    $$
+    $$
+    \approx 6.25 \textrm{ e}^{-}\textrm{/fs}
+    $$
+    $$
+    \tau = \frac{1}{I}\left(\frac{20 \textrm{ frames}}{1 \textrm{fs}}\right)
+    $$
+    $$
+    \tau \approx \frac{3.2 \textrm{ frames}}{I [mA]}
+    $$
+</P>
+
+</div>
+
+
+
+
+<script>
+
+margin = 10;//margin in px
+squaretime = 0;
+v = 0;
+graphsize = 100;
+
+if(innerWidth > innerHeight){
+    squaresize = innerHeight;
+
+    document.getElementById("scroll").style.width = (innerWidth - innerHeight).toString() + "px";
+    document.getElementById("scroll").style.top = "0px";
+}
+else{
+    squaresize = innerWidth;
+    document.getElementById("scroll").style.top = (innerHeight - innerWidth).toString() + "px";
+    document.getElementById("scroll").style.left = "0px";    
+}
+
+
+graphsize = squaresize;
+
+T = graphsize/100;//temperature in px units
+vmax = graphsize/2;//voltage oscillation magnitude in px units
+v = vmax;
+fermizero = 0.5*graphsize;
+fermiheight = 0.2*graphsize;
+period = 15;//period in frames
+photonenergy = 0.18*graphsize;
+
+mustachex0 = 0.5*graphsize;
+mustachey0 = graphsize;
+let noise;
+let fft;
+
+noiseon = false;
+
+
+function setup() {
+
+  createCanvas(squaresize, squaresize);    
+   strokeWeight(2);  
+   background("#303030");
+
+   textSize(30);
+    
+}
+
+
+timeindex = 0;
+
+nanometer = squaresize/8;//nanometer in pixels
+nanometer = 10;
+femtosecond = 20;//in frames, 1 second = 1 femtosecond, 20 frames per second
+attosecond = 20;//number of frames in 1 attosecond
+picosecond = 20;//number of frames in 1 picosecond
+tau = 20;//number of frames until next electron tunneling event
+
+picometer = squaresize/8;
+
+fermi_velocity = 2*picometer/femtosecond;//2 nanometers per femtosecond in pixels per frame
+
+electrons = [];
+
+current = 1;//current in ma
+micron = 10000;
+meanfreepath = 100;// mean free path in pixels, about 1 micron
+
+function draw(){
+    frameRate(20);
+    strokeWeight(1);
+    meanfreepath = mouseX/4  + randomGaussian(0,30);
+    background("#303030");
+    nanometer = 0.1;// 1 nanometer = 0.1 px
+    micron = 100;// 1 micron = 100 px
+    current = 2*(mouseY)/height;
+    nanometer = mouseX/10;
+    current = Math.round(current*10)/10;
+    redness = Math.round(255*current/2);
+    blueness = redness;
+
+    if(redness < 16){
+        fill("#0" + redness.toString(16) + "0000");
+        stroke("#0" + redness.toString(16) + "0000");
+
+    }
+    else{
+        fill("#" + redness.toString(16) + "0000");
+        stroke("#" + redness.toString(16) + "0000");
+
+    }
+    rect(0,0,width/2,height);
+    if(blueness < 16){
+        fill("#00000" + blueness.toString(16));
+        stroke("#00000" + blueness.toString(16));
+
+    }
+    else{
+        fill("#0000" + blueness.toString(16));
+        stroke("#0000" + blueness.toString(16));
+
+    }
+    rect(width/2,0,width/2,height);
+    
+
+    fermi_velocity = 2*nanometer/20;//2 nm per femtosecond times frame time
+
+    tau = 3.2/current;
+    tau = tau + randomGaussian(0, sqrt(tau));
+    fill("red");
+    stroke("red");
+    for(var index = 0;index < electrons.length;index++){
+        if(electrons[index].x < width/2){
+            fill("blue");
+            stroke("blue");
+        }
+        else{
+            fill("red");
+            stroke("red");
+            
+        }
+        circle(electrons[index].x,electrons[index].y,2);
+    }
+    for(var index = 0;index < electrons.length;index++){
+        electrons[index].x += electrons[index].polarity*fermi_velocity;
+    }
+    var tempelectrons = [];
+    for(var index = 0;index < electrons.length;index++){
+        if(electrons[index].x < width && electrons[index].x > 0){
+            tempelectrons.push(electrons[index]);
+        }
+    }
+    electrons = tempelectrons;
+    
+
+    fill("#ff2cb4");
+    stroke("#ff2cb4");
+    rect(width/2 - 0.5*nanometer,0,nanometer,height);
+    strokeWeight(10);
+
+
+    line(100+ width/2,10,100 + width/2 + nanometer,10);
+
+    strokeWeight(1);
+    textSize(50);
+    text("1 nm",width/2 + 0.5*nanometer + 20 + 50,50 + 10);
+
+    stroke("red");
+    fill("red");
+    
+    text("I = " + (Math.round(current*10)/10).toString() +  " mA",width/2 +100,height - 100);
+
+    text("V = " + (Math.round(50*current*10)/10).toString() +  " mV",width/2 +100,height-200);
+
+    stroke("blue");
+    fill("blue");
+    text("1 QUADRILLION X\n SLOWMO\n 1 s = 1 fs",10,3*height/4); 
+    
+    //text("tau = \n" + (Math.round(tau*50)).toString() +  " ps",0.5*width + 0.5*nanometer,height - 100);
+    
+
+    timeindex++;
+    if(timeindex > tau){
+        timeindex = 0 ;
+        var newelectron = {};
+        newelectron.polarity = 2*Math.round(random(1))  - 1;// +1 or -1
+        newelectron.x = newelectron.polarity*nanometer + squaresize/2;
+        newelectron.y = random(squaresize);
+        electrons.push(newelectron);
+    }
+}
+
+
+
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+/*    background-color:#F8F0E3;*/
+    background-color:black;
+    font-family:Arial;
+    color:#00ff00;
+}
+main{
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:2;
+}
+#equation1{
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+#scroll{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    overflow:scroll;
+}
+#scroll img{
+    max-width:80%;
+    display:block;
+    margin:auto;
+}
+
+
+
+
+p{
+    margin:1em 1em 1em 1em;
+    font-size:1.5em;
+    font-family:Arial;
+    overflow:scroll;
+}
+h1,h2,h3{
+    font-family:Arial;
+    text-align:center;
+    overflow:scroll;
+
+}
+a{
+    color:#ff2cb4;
+    font-family:Arial;
+    font-size:1.5em;    
+    overflow:scroll;
+}
+
+
+.deletespan{
+    color:red;
+    border:solid;
+    border-color:red;
+    border-radius:0.5em;
+    padding: 1em 1em 1em 1em;
+    cursor:pointer;
+}
+.deletespan:hover{
+    background-color:#ff000080;
+}
+.filelabel{
+    display:none;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+</style>
+</body>
+</html>
