@@ -16,6 +16,15 @@ mkdir("elements");
 mkdir("images");
 mkdir("zines");
 mkdir("podcast");
+mkdir("trashbook");
+mkdir("squares");
+mkdir("quantumart");
+
+copy("https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/quantumart/php/replicator.txt","quantumart/replicator.php");
+
+copy("https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/squares/php/replicator.txt","squares/replicator.php");
+
+copy("https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/trashbook/php/replicator.txt","trashbook/replicator.php");
 
 
 copy("https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/php/replicator.txt","replicator.php");
