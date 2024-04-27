@@ -44,28 +44,18 @@ WELCOME TO THE DIRT WEB!
 <body>
 <div id = "mainscroll">
         <div id = "qrcode"></div>
+    
+    <a href = "index.html">HOME</a>
 
-    <h1>WEB NOT BOMBS</h1>
+    <h1>WNB CONTENT CREATORS</h1>
 
-    <a href = "https://github.com/lafelabs/webnotbombs/">REPLICATE SERVER</a>
-    <a href = "https://colfax.site">COLFAX.SITE</a>
-    <a href = "https://sloanslake.art">SLOANSLAKE.ART</a>
-    <a href = "radio.html">RADIO</a>
-    <a href = "film.html">FILM</a>
-    <a href = "zines.html">ZINES</a>
-    <a href = "trashbook/">TRASHBOOK</a>
-    <a href = "webcast.html">WEBCAST</a>
-    <a href = "cube.html">DIRT CUBE</a>
-    <a href = "upcycle.html">UPCYCLE</a>    
-    <a href = "delivery.html">DELIVERY</a>    
-    <a href = "rideshare.html">RIDESHARE</a>
-    <a href = "food.html">FOOD</a>    
-    <a href = "fediverse.html">FEDIVERSE</a>
-    <a href = "tiktok.html">TIKTOK</a>
-    <a href = "www.html">THE WORLD WIDE WEB</a>
-    <a href = "wall.html">THE WALL</a>
-    <a href = "creators.html">WNB CREATORS</a>
 
+    <a href = "https://reverb.com/shop/ivys-gear-bazaar-17">IVY PEDALS</a>
+    <a href = "https://www.wurrm.com/">WURRM</a>
+    <a href = "megaton.html">MEGATON LEVIATHAN</a>
+
+<textarea id ="maintextarea"></textarea>
+    
 </div>
 
 <script>
@@ -91,12 +81,44 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
 	correctLevel : QRCode.CorrectLevel.H
 });
 
+currentfile = "dirtwall.txt";
+
+//get readme.md, convert to html and display
+
+motd = "";
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        motd = this.responseText;
+        document.getElementById("maintextarea").value = motd;  
+    }
+};
+httpc.open("GET", "fileloader.php?filename=" + currentfile, true);
+httpc.send();
+
+document.getElementById("maintextarea").onkeyup = function() {
+    scroll = this.value;
+    data = encodeURIComponent(this.value);
+    var httpc = new XMLHttpRequest();
+    var url = "filesaver.php";        
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+    httpc.send("data="+data+"&filename=" + currentfile);//send text to filesaver.php
+}
 
 </script>
 <style>
 body{
     overflow:hidden;
     background-color:#9f8767;    
+}
+textarea{
+    width:80%;
+    display:block;
+    margin:auto;
+    height:30em;
+    background-color:#9f8767;    
+    font-family:Comic Sans MS;
 }
 </style>
 </body>

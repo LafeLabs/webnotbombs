@@ -15,7 +15,7 @@ mkdir("php");
 mkdir("elements");
 mkdir("images");
 mkdir("zines");
-mkdir("webcast");
+mkdir("podcast");
 
 
 copy("https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/php/replicator.txt","replicator.php");

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+    <head>
+     <meta charset="utf-8"/>
+     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADf+wAA3/sAAAfgAACv9QAAoAUAAK/1AACv9QAAqBUAAK/1AACoFQAAr/UAAKAFAACv9QAAB+AAAN/7AADf+wAA" rel="icon" type="image/x-icon" />
+        
+            <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+    </head>
+<body>
+    
+    <a id ="homelink" href = "index.html">HOME</a>
+    
+    <h1 id = "title">DELIVERY</h1>
+    <h2 id = "available">AVAILABLE:</h2>    
+<textarea id = "maintextarea"></textarea>
+    <h2 id = "wanted">WANTED:</h2>    
+<textarea id = "maintextarea2"></textarea>
+
+<script>
+
+currentfile = "delivery-available.txt";
+currentfile2 = "delivery-wanted.txt";
+
+//get readme.md, convert to html and display
+
+motd = "";
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        motd = this.responseText;
+        document.getElementById("maintextarea").value = motd;  
+    }
+};
+httpc.open("GET", "fileloader.php?filename=" + currentfile, true);
+httpc.send();
+
+motd2 = "";
+var httpc2 = new XMLHttpRequest();
+httpc2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        motd2 = this.responseText;
+        document.getElementById("maintextarea2").value = motd2;  
+    }
+};
+httpc2.open("GET", "fileloader.php?filename=" + currentfile2, true);
+httpc2.send();
+
+document.getElementById("maintextarea").onkeyup = function() {
+    scroll = this.value;
+    data = encodeURIComponent(this.value);
+    var httpc = new XMLHttpRequest();
+    var url = "filesaver.php";        
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+    httpc.send("data="+data+"&filename=" + currentfile);//send text to filesaver.php
+}
+
+document.getElementById("maintextarea2").onkeyup = function() {
+    scroll = this.value;
+    data = encodeURIComponent(this.value);
+    var httpc2 = new XMLHttpRequest();
+    var url = "filesaver.php";        
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+    httpc2.send("data="+data+"&filename=" + currentfile2);//send text to filesaver.php
+}
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    background-color:#9f8767;
+}
+#title{
+    position:absolute;
+    z-index:-1;
+    width:100%;
+    text-align:center;
+    font-family:Comic Sans MS;
+}
+#wanted{
+    position:absolute;
+    left:0px;
+    top:55%;
+}
+#available{
+    position:absolute;
+    left:0px;
+    top:10%;
+}
+h2{
+    font-family:Comic Sans MS;
+}
+
+a{
+}
+#maintextarea{
+    position:absolute;
+    left:15%;
+    right:10%;
+    top:10%;
+    bottom:10%;
+    width:80%;
+    height:35%;
+    padding:1em 1em 1em 1em ;
+    background-color:#9f8767;
+    font-family:Comic Sans MS;
+    font-size:1.5em;
+    overflow:scroll;
+    border:solid;
+    border-width:10px;
+}
+#maintextarea2{
+    position:absolute;
+    left:15%;
+    right:10%;
+    top:55%;
+    width:80%;
+    height:35%;
+    padding:1em 1em 1em 1em ;
+    background-color:#9f8767;
+    font-family:Comic Sans MS;
+    font-size:1.5em;
+    overflow:scroll;
+    border:solid;
+    border-width:10px;
+}
+
+#homelink{
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-size:2em;
+    font-family:Comic Sans MS;
+    font-size:4em;
+    color:blue;
+    
+}
+
+        </style>
+    </body>
+</html>
