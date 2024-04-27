@@ -47,10 +47,13 @@ sudo snap install audacity
 
 [![](images/M2.5screw.png)](https://www.homedepot.com/p/Prime-Line-M2-5-0-45-x-8-mm-Metric-Zinc-Plated-Steel-Phillips-Drive-Pan-Head-Machine-Screws-25-Pack-9130839/311229788)
 
+[![](images/4-40-screw.png)](https://www.homedepot.com/p/Hillman-4-40-x-1-4-in-Phillips-Pan-Head-Machine-Screws-50-Pack-43063/204794856)
+
 [![images/pi4-wood-bracket-stl.png](images/pi4-wood-bracket-stl.png)](elements/pi4-wood-bracket.STL)
 
-[![images/pi4-wood-bracket-stl.png](images/M2.5inserts.png)](https://www.prusa3d.com/product/threaded-inserts-m2-5-standard-100-pcs/)
+[![images/pi4-wood-bracket-stl.png](images/M2.5inserts.png)](https://www.3djake.com/ruthex/threaded-insert-m25-70-pieces)
 
+[![images/4-40-inserts.png](images/4-40-inserts.png)](https://www.3djake.com/ruthex/threaded-insert-4-40-unc-100-pieces)
 
 [![images/buck-converter.png](images/buck-converter.png)](https://www.newegg.com/p/36F-009H-002Z0)
 
@@ -75,8 +78,9 @@ sudo snap install audacity
 
 [![](images/flat-bracket.png)](elements/flat-bracket.STL)
 
-
-
-
 [![](images/2x4.png)](https://www.mcmaster.com/3577N134-3577N111/)
+
+[![](images/casters.png)](https://www.homedepot.com/p/SlipStick-3-in-Black-Rollerblade-Office-Chair-Caster-Wheels-5-Pack-CB690/303611857)
+
+
 
