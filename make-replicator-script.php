@@ -10,12 +10,12 @@ dna.txt is a json formatted file which points to all the files in this system, w
 <pre>
 <?php
 
-    $baseurl = "https://raw.githubusercontent.com/LafeLabs/network/main/page/";
+    $baseurl = "https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/page/";
     
     $setname = "mynewset";//put your set name here
     $copyscript = "mkdir ".$setname."\n";
     $copyscript .= "cd ".$setname."\n";
-    $copyscript .= "wget https://raw.githubusercontent.com/LafeLabs/network/main/page/replicator.php\n";
+    $copyscript .= "wget https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/page/replicator.php\n";
     $copyscript .= "php replicator.php\n";
     $copyscript .= "cd elements\n";
     
@@ -42,6 +42,12 @@ dna.txt is a json formatted file which points to all the files in this system, w
     $copyscript .= "wget ".$baseurl."replicator.sh -O replicator.sh\n";
     $copyscript .= "wget ".$baseurl."README.md -O README.md\n";
     $copyscript .= "cd ..\n";
+    
+    $setname = "trashbook";//put your set name here
+    $copyscript = "mkdir ".$setname."\n";
+    $copyscript .= "cd ".$setname."\n";
+    $copyscript .= "wget https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/trashbook/replicator.php\n";
+    $copyscript .= "php replicator.php\n";    
     
     $file = fopen("replicator.sh","w");// create new file with this name
     fwrite($file,$copyscript); //write data to file

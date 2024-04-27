@@ -43,12 +43,7 @@ foreach($dna->php as $value){
 
 }
     
-foreach($dna->scrolls as $value){
-    
-    copy($baseurl."scrolls/".$value,"scrolls/".$value);
 
-}
-    
     
 ?>
 <a href = "index.html">CLICK TO GO TO NEW PAGE</a>
