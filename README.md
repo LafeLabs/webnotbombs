@@ -1,4 +1,9 @@
-# [WEB NOT BOMBS](https://github.com/LafeLabs/network)
+# [WEB NOT BOMBS](https://github.com/LafeLabs/webnotbombs)
+
+![](https://raw.githubusercontent.com/LafeLabs/network/main/flags/images/colfax-flag.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/network/main/flags/images/sloanslake-flag.png)
+
 
 EVERYTHING FREE FOR EVERYONE EVERYWHERE RIGHT NOW! MUTUAL AID AND DIRECT ACTION!  FREE WEB SERVERS ON EVERY STREET CORNER. FREE WEB SERVERS ALONG EVERY RIVER, STREAM AND SHORELINE!  FREE WEB SERVERS WITH NO PRIVATE DATA, SHARING ONLY SELF-REPLICATING MEDIA!  FREE WEB SERVERS WITH DOCUMENTS ABOUT HOW TO BUILD MORE FREE WEB SERVERS!  
 
