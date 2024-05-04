@@ -1,3 +1,5 @@
+![web not bombs flag](https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/images/wnb-flag.png)
+
 # [WEB NOT BOMBS](https://github.com/LafeLabs/webnotbombs)
 
 ![](https://raw.githubusercontent.com/LafeLabs/network/main/flags/images/colfax-flag.png)
