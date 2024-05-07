@@ -46,6 +46,10 @@ sudo snap install audacity
 
 ```
 
+![](images/camp.png)
+![](images/camp2.png)
+
+
 1. Get a 8 foot 1x4.
 2. Cut off two sections each 24 inches long
 3. Cut off a section 28 inches long
