@@ -1,0 +1,6 @@
+{
+    "server": "https://raw.githubusercontent.com/LafeLabs/webnotbombs/main/trashbook/anarchotech/",
+    "scrolls": [
+        "home"
+    ]
+}
